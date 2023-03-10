@@ -3,7 +3,6 @@
 *::before {
   padding: 0;
   margin: 0;
-  border: 0;
   box-sizing: border-box;
 }
 html {
@@ -21,4 +20,24 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+input {
+  min-height: 4rem;
+  padding: 0 0.5rem;
+  font-size: 1.6rem;
+  border-radius: 1rem;
+  border: 1px solid black;
+}
+textarea {
+  padding: 0.5rem;
+  font-size: 1.6rem;
+}
+button{
+  font-size: 1.8rem;
+  font-weight: 700;
+  outline: none;
+  border: none;
+  border-radius: 2rem;
+  cursor: pointer;
 }
