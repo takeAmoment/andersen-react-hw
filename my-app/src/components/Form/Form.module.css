@@ -1,0 +1,28 @@
+:root {
+    --form-color: #e6f4ff;
+    --form-button: #597ef7;
+}
+.form__container {
+    width: 60rem;
+    box-shadow: 0rem 0rem 0.5rem 0.03rem rgba(0, 0, 0, 0.258);
+    background-color: var(--form-color);
+}
+form {
+    padding: 2rem;
+    display: grid;
+    justify-items: center;
+}
+.form__submitButton {
+    margin-top: 2rem;
+    background-color: var(--form-button);
+    color: white;
+    box-shadow: 0rem 0rem 0.3rem 0.1rem #597ef7;
+    width: 20rem;
+    height: 5rem;
+}
+.form__submitButton:hover{
+    opacity: 0.9;
+    transition: all 0.3s;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem #597ef7;
+    transform: translateY(0.1rem);
+}
