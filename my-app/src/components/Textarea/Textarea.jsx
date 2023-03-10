@@ -5,7 +5,7 @@ export default class Textarea extends Component {
     const { item, handleChange, value } = this.props;
     return (
       <textarea
-        rows={5}
+        rows={7}
         placeholder={item.placeholder}
         name={item.name}
         id={item.id}
