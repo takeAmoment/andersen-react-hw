@@ -1,0 +1,9 @@
+main{
+    min-height: 80vh;
+}
+.main__container {
+    padding: 2rem;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
