@@ -1,0 +1,19 @@
+:root{
+    --header-color: #597ef7;
+    --header-text-color: #fff;
+}
+
+header{
+    background-color: var(--header-color);
+}
+.header__container {
+    padding: 1rem;
+}
+.header__logo {
+    text-decoration: none;
+    color: var(--header-text-color);
+}
+.logo__text{
+    font-family: 'Sriracha', cursive;
+    font-size: 3.6rem;
+}
