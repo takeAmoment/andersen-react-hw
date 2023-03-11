@@ -1,13 +1,15 @@
-/* eslint-disable react/destructuring-assignment */
 import { Component } from 'react';
 import Button from '../Button/Button';
 import InputField from '../InputField/InputField';
 import styles from './Form.module.css';
+import Modal from '../Modal/Modal';
+import SuccessNotification from '../Notifications/SuccessNotification/SuccessNotification';
 
 export default class Form extends Component {
   constructor(props) {
     super(props);
-    this.state = this.props.initialState;
+    const { initialState } = this.props;
+    this.state = initialState;
   }
 
   handleChange = (e) => {
@@ -21,6 +23,14 @@ export default class Form extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     console.log(this.state);
+    this.setState({
+      isOpen: true,
+    });
+  };
+
+  onClose = (e) => {
+    e.preventDefault();
+    this.setState(this.props.initialState);
   };
 
   render() {
@@ -45,6 +55,14 @@ export default class Form extends Component {
             disabled={false}
           />
         </form>
+        {this.state.isOpen && (
+          <Modal onOpen={this.state.isOpen} onClose={this.onClose}>
+            <SuccessNotification
+              message={`${this.state.name}, you survay was saved!!`}
+              name={this.state.name}
+            />
+          </Modal>
+        )}
       </div>
     );
   }

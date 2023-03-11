@@ -7,6 +7,7 @@ export const initialState = {
   site: '',
   technologies: '',
   project: '',
+  isOpen: false,
 };
 
 export const surveyData = [
