@@ -1,0 +1,23 @@
+.success{
+    
+}
+.success__header{
+    display: grid;
+    gap: 1rem;
+    justify-content: center;
+    justify-items: center;
+    margin-bottom: 2rem;
+}
+.success__icon {
+    display: block;
+    width: 4rem;
+    height: 4rem;
+    background-image: url(../../../assets/icons/checked.png);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+.success__message {
+    text-align: center;
+    font-size: 1.6rem;
+}
