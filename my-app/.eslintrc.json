@@ -33,6 +33,7 @@
         "prettier/prettier": ["error", { "endOfLine": "auto" }],
         "react/jsx-uses-react": "off",
         "react/react-in-jsx-scope": "off",
+        "react/destructuring-assignment": [0, "always", { "ignoreClassFields": false, "destructureInSignature": "ignore" }],
         "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
         "jsx-a11y/label-has-associated-control": ["error", {
             "required": {
