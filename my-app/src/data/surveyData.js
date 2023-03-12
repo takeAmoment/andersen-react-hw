@@ -8,6 +8,7 @@ export const initialState = {
   technologies: '',
   project: '',
   isOpen: false,
+  page: 0,
 };
 
 export const surveyData = [
@@ -46,7 +47,7 @@ export const surveyData = [
   {
     id: 4,
     type: 'input',
-    inputType: 'url',
+    inputType: 'text',
     name: 'site',
     label: 'Site:',
     placeholder: 'Enter site...',

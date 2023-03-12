@@ -10,7 +10,6 @@ export default class Input extends Component {
         name={item.name}
         onChange={handleChange}
         value={value}
-        required
       />
     );
   }

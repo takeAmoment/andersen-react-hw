@@ -11,7 +11,6 @@ export default class Textarea extends Component {
         id={item.id}
         onChange={handleChange}
         value={value}
-        required
       />
     );
   }
