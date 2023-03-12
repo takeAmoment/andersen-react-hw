@@ -1,13 +1,16 @@
 export const initialState = {
-  name: '',
-  surname: '',
-  dateOfBirth: '',
-  phone: '',
-  about: '',
-  site: '',
-  technologies: '',
-  project: '',
+  formFields: {
+    name: '',
+    surname: '',
+    dateOfBirth: '',
+    phone: '',
+    about: '',
+    site: '',
+    technologies: '',
+    project: '',
+  },
   isOpen: false,
+  amountPerPage: 3,
   page: 0,
 };
 

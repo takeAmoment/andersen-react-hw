@@ -1,28 +1,67 @@
 :root {
-    --form-color: #e6f4ff;
-    --form-button: #597ef7;
+    --form-color: #f0f5ff;
+    --form-next-button: #597ef7;
+    --form-submit-button: #4cb364;
 }
 .form__container {
+    border-radius: 1rem;
     width: 60rem;
-    box-shadow: 0rem 0rem 0.5rem 0.03rem rgba(0, 0, 0, 0.258);
+    box-shadow: 0rem 0rem 0.6rem 0.03rem rgba(0, 0, 0, 0.4);
     background-color: var(--form-color);
+}
+.form__info {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+    justify-content: center;
+}
+.info__icon{
+    margin-left: -3rem;
+    font-size: 2.4rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+.info__icon:hover{
+    opacity: 0.6;
+    transition: all 0.3s;
+    transform: translateY(0.1rem);
+}
+.info__text {
+    font-size: 1.8rem;
 }
 form {
     padding: 2rem;
     display: grid;
     justify-items: center;
+    min-height: 50rem;
 }
 .form__submitButton {
     margin-top: 2rem;
-    background-color: var(--form-button);
+    background-color: var(--form-submit-button);
     color: white;
-    box-shadow: 0rem 0rem 0.3rem 0.1rem #597ef7;
+    box-shadow: 0rem 0rem 0.3rem 0.1rem var(--form-submit-button);
     width: 20rem;
     height: 5rem;
 }
 .form__submitButton:hover{
     opacity: 0.9;
     transition: all 0.3s;
-    box-shadow: 0rem 0rem 0.2rem 0.1rem #597ef7;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem var(--form-submit-button);
+    transform: translateY(0.1rem);
+}
+.form__nextButton {
+    margin-top: 2rem;
+    background-color: var(--form-next-button);
+    color: white;
+    box-shadow: 0rem 0rem 0.3rem 0.1rem var(--form-next-button);
+    width: 20rem;
+    height: 5rem;
+}
+.form__nextButton:hover{
+    opacity: 0.9;
+    transition: all 0.3s;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem var(--form-next-button);
     transform: translateY(0.1rem);
 }
