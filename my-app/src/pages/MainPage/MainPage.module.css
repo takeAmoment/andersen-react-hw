@@ -4,6 +4,16 @@ main{
 .main__container {
     padding: 2rem;
     display: grid;
+    grid-template-columns: 60rem;
     align-items: center;
+    align-content: center;
+    justify-items: center;
     justify-content: center;
+}
+
+@media (max-width: 700px) {
+    .main__container{
+        padding: 2rem 1rem;
+        grid-template-columns: 1fr; 
+    }
 }

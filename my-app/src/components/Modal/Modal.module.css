@@ -1,3 +1,6 @@
+:root {
+    --modal-button: #4cb364;
+}
 .modal {
     position: fixed;
     overflow: hidden;
@@ -20,8 +23,16 @@
     background-color: white;
     border-radius: 2rem;
     min-width: 40rem;
+    max-width: 60rem;
     min-height: 20rem;
 }
+@media (max-width: 700px) {
+    .modal__container{
+        max-width: 90%;
+        min-width: 90%;
+    }
+}
+
 .modal__button {
     margin-top: 3rem;
     font-size: 1.8rem;
@@ -29,13 +40,13 @@
     height: 4rem;
     outline: none;
     border: none;
-    background-color:rgb(7, 157, 7);
-    box-shadow: 0rem 0rem 0.3rem 0.1rem #0b6e07;
+    background-color:#4cb364;
+    box-shadow: 0rem 0rem 0.3rem 0.1rem var(--modal-button);
     color: white;
 }
 .modal__button:hover{
     opacity: 0.9;
     transition: all 0.3s;
-    box-shadow: 0rem 0rem 0.2rem 0.1rem #0b6e07;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem var(--modal-button);
     transform: translateY(0.1rem);
 }
