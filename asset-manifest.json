@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/andersen-react-hw/static/css/main.bd3eaa2e.css",
+    "main.js": "/andersen-react-hw/static/js/main.29faa7cb.js",
+    "static/js/787.28cb0dcd.chunk.js": "/andersen-react-hw/static/js/787.28cb0dcd.chunk.js",
+    "static/media/job.svg": "/andersen-react-hw/static/media/job.4045fcbb2c4be4c2221e.svg",
+    "index.html": "/andersen-react-hw/index.html",
+    "main.bd3eaa2e.css.map": "/andersen-react-hw/static/css/main.bd3eaa2e.css.map",
+    "main.29faa7cb.js.map": "/andersen-react-hw/static/js/main.29faa7cb.js.map",
+    "787.28cb0dcd.chunk.js.map": "/andersen-react-hw/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bd3eaa2e.css",
+    "static/js/main.29faa7cb.js"
+  ]
+}
