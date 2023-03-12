@@ -5,12 +5,8 @@
     padding: 1rem 0;
     width: 80%;
 }
-.input__activeField {
+.input__field.active {
     display: grid;
-    gap: 0.7rem;
-    grid-template-rows: auto;
-    padding: 1rem 0;
-    width: 80%;
 }
 .field__label {
     font-size: 1.4rem;

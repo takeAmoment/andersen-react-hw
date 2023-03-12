@@ -7,7 +7,11 @@ export default class InputField extends Component {
   render() {
     const { item, handleChange, value, classname } = this.props;
     return (
-      <div className={classname === 'active' ? styles.input__activeField : styles.input__field}>
+      <div
+        className={
+          classname === 'active' ? `${styles.input__field} ${styles.active}` : styles.input__field
+        }
+      >
         <label htmlFor={item.name} className={styles.field__label}>
           {item.label}
         </label>
