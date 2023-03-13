@@ -8,6 +8,7 @@ export default class MainPage extends Component {
     return (
       <main>
         <div className={styles.main__container}>
+          <h1>Создание анкеты</h1>
           <Form initialState={initialState} formData={surveyData} />
         </div>
       </main>
