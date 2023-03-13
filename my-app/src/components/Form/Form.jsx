@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { GrPrevious } from 'react-icons/gr';
 import Button from '../Button/Button';
 import InputField from '../InputField/InputField';
 import styles from './Form.module.css';
@@ -58,6 +57,11 @@ export default class Form extends Component {
     });
   };
 
+  reset = (e) => {
+    e.preventDefault();
+    this.setState(this.props.initialState);
+  };
+
   render() {
     const { formData } = this.props;
     const indices = this.findIndex();
@@ -66,10 +70,15 @@ export default class Form extends Component {
       <div className={styles.form__container}>
         <div className={styles.form__info}>
           {this.state.page > 0 && (
-            <GrPrevious onClick={this.getPrevPage} className={styles.info__icon} />
+            <button
+              type="button"
+              aria-label="previous"
+              onClick={this.getPrevPage}
+              className={styles.info__icon}
+            />
           )}
           <p className={styles.info__text}>
-            Step <span>{this.state.page + 1}</span> from {totalCount}
+            Шаг <span>{this.state.page + 1}</span> из {totalCount}
           </p>
         </div>
         <form onSubmit={this.handleSubmit}>
@@ -86,21 +95,30 @@ export default class Form extends Component {
               />
             );
           })}
-          {this.state.page !== 2 ? (
+          {this.state.page < totalCount - 1 ? (
             <Button
               buttonType="button"
               classname={styles.form__nextButton}
-              text="Next"
+              text="Вперед"
               disabled={false}
               onClick={this.getNextPage}
             />
           ) : (
-            <Button
-              buttonType="submit"
-              classname={styles.form__submitButton}
-              text="Submit"
-              disabled={false}
-            />
+            <div className={styles.buttons}>
+              <Button
+                buttonType="submit"
+                classname={styles.form__submitButton}
+                text="Сохранить"
+                disabled={false}
+              />
+              <Button
+                buttonType="reset"
+                classname={styles.form__resetButton}
+                text="Отмена"
+                disabled={false}
+                onClick={this.reset}
+              />
+            </div>
           )}
         </form>
         {this.state.isOpen && (

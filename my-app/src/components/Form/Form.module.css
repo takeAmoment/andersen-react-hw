@@ -2,8 +2,11 @@
     --form-color: #f0f5ff;
     --form-next-button: #597ef7;
     --form-submit-button: #4cb364;
+    --form-reset-button: #ff7875;
 }
 .form__container {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
     border-radius: 1rem;
     width: 60rem;
     box-shadow: 0rem 0rem 0.6rem 0.03rem rgba(0, 0, 0, 0.4);
@@ -24,9 +27,15 @@
 }
 .info__icon{
     margin-left: -3rem;
-    font-size: 2.4rem;
-    font-weight: 700;
-    cursor: pointer;
+    width: 3rem;
+    height: 3rem;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/icons/previous-btn.svg);
+    background-position: 0 0;
+    background-size: contain;
+    background-color: transparent;
+    outline: none;
+    border: none;
 }
 .info__icon:hover{
     opacity: 0.6;
@@ -34,7 +43,7 @@
     transform: translateY(0.1rem);
 }
 .info__text {
-    font-size: 1.8rem;
+    font-size: 2rem;
 }
 form {
     padding: 2rem;
@@ -46,6 +55,30 @@ form {
     .form {
         padding: 2rem 1rem;
     }
+}
+.buttons {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, auto);
+}
+@media (max-width: 700px) {
+    .buttons {
+        grid-template-columns: 1fr;
+    }
+}
+.form__resetButton {
+    margin-top: 2rem;
+    background-color: var(--form-reset-button);
+    color: white;
+    box-shadow: 0rem 0rem 0.3rem 0.1rem var(--form-reset-button);
+    width: 20rem;
+    height: 5rem;
+}
+.form__resetButton:hover{
+    opacity: 0.9;
+    transition: all 0.3s;
+    box-shadow: 0rem 0rem 0.2rem 0.1rem var(--form-reset-button);
+    transform: translateY(0.1rem);
 }
 .form__submitButton {
     margin-top: 2rem;

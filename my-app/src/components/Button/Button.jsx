@@ -4,12 +4,8 @@ export default class Button extends Component {
   render() {
     const { buttonType, classname, disabled, text, onClick } = this.props;
     return (
-      <button
-        type={buttonType === 'submit' ? 'submit' : 'button'}
-        className={classname}
-        disabled={disabled}
-        onClick={onClick}
-      >
+      // eslint-disable-next-line react/button-has-type
+      <button type={buttonType} className={classname} disabled={disabled} onClick={onClick}>
         {text}
       </button>
     );
