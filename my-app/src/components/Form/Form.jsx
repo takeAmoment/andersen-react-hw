@@ -98,7 +98,7 @@ export default class Form extends Component {
           {this.state.page < totalCount - 1 ? (
             <Button
               buttonType="button"
-              classname={styles.form__nextButton}
+              classname={`${styles.form__button} ${styles.button_next}`}
               text="Вперед"
               disabled={false}
               onClick={this.getNextPage}
@@ -107,13 +107,13 @@ export default class Form extends Component {
             <div className={styles.buttons}>
               <Button
                 buttonType="submit"
-                classname={styles.form__submitButton}
+                classname={`${styles.form__button} ${styles.button_submit}`}
                 text="Сохранить"
                 disabled={false}
               />
               <Button
                 buttonType="reset"
-                classname={styles.form__resetButton}
+                classname={`${styles.form__button} ${styles.button_reset}`}
                 text="Отмена"
                 disabled={false}
                 onClick={this.reset}

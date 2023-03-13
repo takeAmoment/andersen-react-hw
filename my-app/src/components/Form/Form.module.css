@@ -63,48 +63,44 @@ form {
 }
 @media (max-width: 700px) {
     .buttons {
+        gap: 0;
         grid-template-columns: 1fr;
     }
 }
-.form__resetButton {
+.form__button {
     margin-top: 2rem;
+    color: white;
+    width: 20rem;
+    height: 5rem;
+}
+@media (max-width: 700px) {
+    .form__button {
+        width: 15rem;
+    }
+}
+.form__button:hover{
+    opacity: 0.9;
+    transition: all 0.3s;
+    transform: translateY(0.1rem);
+}
+.button_reset {
     background-color: var(--form-reset-button);
-    color: white;
     box-shadow: 0rem 0rem 0.3rem 0.1rem var(--form-reset-button);
-    width: 20rem;
-    height: 5rem;
 }
-.form__resetButton:hover{
-    opacity: 0.9;
-    transition: all 0.3s;
+.button_reset:hover{
     box-shadow: 0rem 0rem 0.2rem 0.1rem var(--form-reset-button);
-    transform: translateY(0.1rem);
 }
-.form__submitButton {
-    margin-top: 2rem;
+.button_submit {
     background-color: var(--form-submit-button);
-    color: white;
     box-shadow: 0rem 0rem 0.3rem 0.1rem var(--form-submit-button);
-    width: 20rem;
-    height: 5rem;
 }
-.form__submitButton:hover{
-    opacity: 0.9;
-    transition: all 0.3s;
+.button_submit:hover{
     box-shadow: 0rem 0rem 0.2rem 0.1rem var(--form-submit-button);
-    transform: translateY(0.1rem);
 }
-.form__nextButton {
-    margin-top: 2rem;
+.button_next {
     background-color: var(--form-next-button);
-    color: white;
     box-shadow: 0rem 0rem 0.3rem 0.1rem var(--form-next-button);
-    width: 20rem;
-    height: 5rem;
 }
-.form__nextButton:hover{
-    opacity: 0.9;
-    transition: all 0.3s;
+.button_next:hover{
     box-shadow: 0rem 0rem 0.2rem 0.1rem var(--form-next-button);
-    transform: translateY(0.1rem);
 }
