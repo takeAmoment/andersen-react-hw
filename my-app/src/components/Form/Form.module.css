@@ -73,6 +73,14 @@ form {
     width: 20rem;
     height: 5rem;
 }
+.form__button:disabled {
+    opacity: 0.5;
+}
+.form__button:disabled:hover{
+    opacity: 0.5;
+    transition: all 0.3s;
+    transform: translateY(0rem);
+}
 @media (max-width: 700px) {
     .form__button {
         width: 15rem;
