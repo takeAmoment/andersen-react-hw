@@ -1,3 +1,6 @@
+:root{
+  --error-color: red;
+}
 *,
 *::after,
 *::before {
