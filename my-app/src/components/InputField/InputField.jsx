@@ -18,7 +18,10 @@ export class InputField extends Component {
         {item.type === 'input' ? (
           <Input item={item} handleChange={handleChange} value={value} />
         ) : (
-          <Textarea item={item} handleChange={handleChange} value={value} />
+          <>
+            <Textarea item={item} handleChange={handleChange} value={value} />
+            <p className={styles.textarea__text}>Осталось {value.trim().length}/600 символов</p>
+          </>
         )}
         <p className={styles.field__error}>{!isFormValid ? error : ''}</p>
       </div>
