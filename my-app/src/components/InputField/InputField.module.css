@@ -12,6 +12,9 @@
     font-weight: 700;
     margin-bottom: 0.7rem;
 }
+.label__note {
+    color: red;
+}
 .field__error {
     margin-top: 0.5rem;
     font-size: 1.4rem;

@@ -13,7 +13,7 @@ export class InputField extends Component {
         }
       >
         <label htmlFor={item.name} className={styles.field__label}>
-          {item.label}
+          {item.label} <span className={styles.label__note}>*</span>
         </label>
         {item.type === 'input' ? (
           <Input item={item} handleChange={handleChange} value={value} />
