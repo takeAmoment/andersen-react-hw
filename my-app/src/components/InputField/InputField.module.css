@@ -21,3 +21,7 @@
     color: var(--error-color);
     height: 1.5rem;
 }
+.textarea__text {
+    margin-top: 0.3rem;
+    font-size: 1.4rem;
+}
