@@ -13,11 +13,11 @@
     margin-bottom: 0.7rem;
 }
 .label__note {
-    color: red;
+    color: var(--error-color);
 }
 .field__error {
     margin-top: 0.5rem;
     font-size: 1.4rem;
-    color: red;
+    color: var(--error-color);
     height: 1.5rem;
 }
