@@ -1,6 +1,5 @@
 .input__field {
     display: none;
-    gap: 0.7rem;
     grid-template-rows: auto;
     padding: 1rem 0;
     width: 80%;
@@ -9,6 +8,13 @@
     display: grid;
 }
 .field__label {
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     font-weight: 700;
+    margin-bottom: 0.7rem;
+}
+.field__error {
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+    color: red;
+    height: 1.5rem;
 }

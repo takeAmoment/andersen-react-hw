@@ -5,7 +5,7 @@ import styles from './InputField.module.css';
 
 export default class InputField extends Component {
   render() {
-    const { item, handleChange, value, classname } = this.props;
+    const { item, handleChange, value, classname, error, isFormValid } = this.props;
     return (
       <div
         className={
@@ -20,6 +20,7 @@ export default class InputField extends Component {
         ) : (
           <Textarea item={item} handleChange={handleChange} value={value} />
         )}
+        <p className={styles.field__error}>{!isFormValid ? error : ''}</p>
       </div>
     );
   }
