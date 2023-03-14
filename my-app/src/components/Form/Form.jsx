@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { InputField, Button, Modal, SuccessNotification } from '../index';
 import styles from './Form.module.css';
+import validateSurveyForm from '../../utilities/formValidation';
 
 export class Form extends Component {
   constructor(props) {
@@ -10,8 +11,38 @@ export class Form extends Component {
 
   findIndex = () => {
     const firstIndex = this.state.page * this.state.amountPerPage;
-    const lastIndex = firstIndex + (this.state.amountPerPage - 1);
+    let lastIndex = firstIndex + (this.state.amountPerPage - 1);
+    if (lastIndex >= this.props.formData.length) {
+      lastIndex = this.props.formData.length - 1;
+    }
     return { firstIndex, lastIndex };
+  };
+
+  checkValidation = (name, value) => {
+    const message = validateSurveyForm(name, value);
+    const formErrors = { ...this.state.formErrors };
+    formErrors[name] = message;
+    this.setState((prevState) => ({
+      ...prevState,
+      formErrors,
+    }));
+  };
+
+  checkIsFormValid = () => {
+    const { formData } = this.props;
+    let isValid = true;
+    const indices = this.findIndex();
+
+    for (let i = indices.firstIndex; i <= indices.lastIndex; i += 1) {
+      const { name } = formData[i];
+      if (this.state.formErrors[name]) {
+        isValid = false;
+        break;
+      }
+    }
+    this.setState({
+      isValid,
+    });
   };
 
   handleChange = (e) => {
@@ -23,15 +54,26 @@ export class Form extends Component {
       ...prevState,
       formFields,
     }));
+    this.setState({
+      isDisabled: false,
+    });
+    this.checkValidation(name, value);
   };
 
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(this.state.formFields);
-    this.setState({
-      isOpen: true,
-    });
-    document.body.style.overflow = 'hidden';
+    await this.checkIsFormValid();
+    if (this.state.isValid) {
+      console.log(this.state.formFields);
+      this.setState({
+        isOpen: true,
+      });
+      document.body.style.overflow = 'hidden';
+    } else {
+      this.setState({
+        isDisabled: true,
+      });
+    }
   };
 
   onClose = (e) => {
@@ -40,11 +82,18 @@ export class Form extends Component {
     document.body.style.overflow = 'auto';
   };
 
-  getNextPage = (e) => {
+  getNextPage = async (e) => {
     e.preventDefault();
-    this.setState((prevState) => {
-      return { page: prevState.page + 1 };
-    });
+    await this.checkIsFormValid();
+    if (this.state.isValid) {
+      this.setState((prevState) => {
+        return { page: prevState.page + 1 };
+      });
+    } else {
+      this.setState({
+        isDisabled: true,
+      });
+    }
   };
 
   getPrevPage = (e) => {
@@ -90,6 +139,8 @@ export class Form extends Component {
                 }
                 handleChange={this.handleChange}
                 value={this.state.formFields[item.name]}
+                error={this.state.formErrors[item.name]}
+                isFormValid={this.state.isValid}
               />
             );
           })}
@@ -98,7 +149,7 @@ export class Form extends Component {
               buttonType="button"
               classname={`${styles.form__button} ${styles.button_next}`}
               text="Вперед"
-              disabled={false}
+              disabled={this.state.isDisabled}
               onClick={this.getNextPage}
             />
           ) : (
@@ -107,13 +158,13 @@ export class Form extends Component {
                 buttonType="submit"
                 classname={`${styles.form__button} ${styles.button_submit}`}
                 text="Сохранить"
-                disabled={false}
+                disabled={this.state.isDisabled}
               />
               <Button
                 buttonType="reset"
                 classname={`${styles.form__button} ${styles.button_reset}`}
                 text="Отмена"
-                disabled={false}
+                disabled={this.state.isValid}
                 onClick={this.reset}
               />
             </div>
