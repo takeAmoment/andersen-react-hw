@@ -26,12 +26,13 @@ export default function validateSurveyForm(type, fieldValue) {
       }
       break;
     case 'phone':
+      console.log(value.length);
       if (value.length === 0) {
         message = 'Поле пустое. Заполните пожалуйста';
       } else if (value.length > 12) {
         message = 'Допустимая длинна 12 символов';
-      } else if (!value.match(/[0-9]{1}-[0-9]{4}-[0-9]{2}-[0-9]{2}/)) {
-        message = 'Допустимый формат 7-7777-77-77';
+      } else if (value.length < 12) {
+        message = 'Не менее 9 цифр';
       }
       break;
     case 'site':

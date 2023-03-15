@@ -48,15 +48,40 @@ export default class Form extends Component {
     });
   };
 
-  handleChange = (e) => {
-    const { name } = e.target;
-    const { value } = e.target;
+  createMaskForPhone = (name, value) => {
+    const val = value.replace(/\D/g, '');
+    const nums = val.split('');
+    const format = `${nums[0] ? nums[0] : ''}${nums[1] ? `-${nums[1]}` : ''}${
+      nums[2] ? nums[2] : ''
+    }${nums[3] ? nums[3] : ''}${nums[4] ? nums[4] : ''}${nums[5] ? `-${nums[5]}` : ''}${
+      nums[6] ? nums[6] : ''
+    }${nums[7] ? `-${nums[7]}` : ''}${nums[8] ? nums[8] : ''}${nums[9] ? nums[9] : ''}`;
     const formFields = { ...this.state.formFields };
-    formFields[name] = value;
+    formFields[name] = format;
     this.setState((prevState) => ({
       ...prevState,
       formFields,
     }));
+  };
+
+  handleChange = (e) => {
+    const { name } = e.target;
+    const { value } = e.target;
+    const formFields = { ...this.state.formFields };
+    if (name === 'phone') {
+      this.createMaskForPhone(name, value, formFields);
+      // formFields.phone = value.replace(/(\d{1})(\d{4})(\d{2})(\d{2})/, '$1-$2-$3-$4');
+      // this.setState((prevState) => ({
+      //   ...prevState,
+      //   formFields,
+      // }));
+    } else {
+      formFields[name] = value;
+      this.setState((prevState) => ({
+        ...prevState,
+        formFields,
+      }));
+    }
     this.setState({
       isDisabled: false,
     });
@@ -67,7 +92,7 @@ export default class Form extends Component {
     e.preventDefault();
     await this.checkIsFormValid();
     if (this.state.isValid) {
-      console.log(this.state.formFields);
+      this.props.saveSurvey(this.state.formFields);
       this.setState({
         isOpen: true,
       });
@@ -166,7 +191,7 @@ export default class Form extends Component {
                 buttonType="reset"
                 classname={`${styles.form__button} ${styles.button_reset}`}
                 text="Отмена"
-                disabled={this.state.isValid}
+                disabled={false}
                 onClick={this.reset}
               />
             </div>
