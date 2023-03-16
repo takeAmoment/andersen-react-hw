@@ -20,7 +20,9 @@ export class InputField extends Component {
         ) : (
           <>
             <Textarea item={item} handleChange={handleChange} value={value} />
-            <p className={styles.textarea__text}>Осталось {value.trim().length}/600 символов</p>
+            {!error && (
+              <p className={styles.textarea__text}>Осталось {value.trim().length}/600 символов</p>
+            )}
           </>
         )}
         <p className={styles.field__error}>{isShow ? error : ''}</p>
