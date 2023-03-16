@@ -1,7 +1,16 @@
 :root{
+  --header-color: #597ef7;
+  --header-text-color: #fff;
+  --footer-color: #f0f0f0;
+  --footer-text-color: #000000;
   --error-color: red;
   --form-color: #f0f5ff;
+  --form-next-button: #597ef7;
+  --form-submit-button: #4cb364;
+  --form-reset-button: #ff7875;
+  --modal-button: #4cb364;
 }
+
 *,
 *::after,
 *::before {
