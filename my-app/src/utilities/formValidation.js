@@ -26,7 +26,6 @@ export default function validateSurveyForm(type, fieldValue) {
       }
       break;
     case 'phone':
-      console.log(value.length);
       if (value.length === 0) {
         message = 'Поле пустое. Заполните пожалуйста';
       } else if (value.length > 12) {
