@@ -89,7 +89,6 @@ export class Form extends Component {
     e.preventDefault();
     await this.checkIsFormValid();
     if (this.state.isValid) {
-      this.props.saveSurvey(this.state.formFields);
       this.setState({
         isOpen: true,
       });
@@ -103,6 +102,7 @@ export class Form extends Component {
 
   onClose = (e) => {
     e.preventDefault();
+    this.props.saveSurvey(this.state.formFields);
     this.setState(this.props.initialState);
     document.body.style.overflow = 'auto';
   };
