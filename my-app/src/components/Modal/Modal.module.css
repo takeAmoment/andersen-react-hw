@@ -1,6 +1,3 @@
-:root {
-    --modal-button: #4cb364;
-}
 .modal {
     position: fixed;
     overflow: hidden;

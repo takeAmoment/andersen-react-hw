@@ -93,6 +93,7 @@ export class Form extends Component {
     } else {
       this.setState({
         isDisabled: true,
+        isShow: true,
       });
     }
   };
