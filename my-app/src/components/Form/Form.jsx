@@ -21,16 +21,6 @@ export default class Form extends Component {
     return { firstIndex, lastIndex };
   };
 
-  checkValidation = (name, value) => {
-    const message = validateSurveyForm(name, value);
-    const formErrors = { ...this.state.formErrors };
-    formErrors[name] = message;
-    this.setState((prevState) => ({
-      ...prevState,
-      formErrors,
-    }));
-  };
-
   checkIsFormValid = () => {
     const { formData } = this.props;
     let isValid = true;
@@ -46,6 +36,21 @@ export default class Form extends Component {
     this.setState({
       isValid,
     });
+    if (isValid) {
+      this.setState({
+        isDisabled: false,
+      });
+    }
+  };
+
+  checkValidation = (name, value) => {
+    const message = validateSurveyForm(name, value);
+    const formErrors = { ...this.state.formErrors };
+    formErrors[name] = message;
+    this.setState((prevState) => ({
+      ...prevState,
+      formErrors,
+    }));
   };
 
   createMaskForPhone = (name, value) => {
@@ -55,7 +60,7 @@ export default class Form extends Component {
       nums[2] ? nums[2] : ''
     }${nums[3] ? nums[3] : ''}${nums[4] ? nums[4] : ''}${nums[5] ? `-${nums[5]}` : ''}${
       nums[6] ? nums[6] : ''
-    }${nums[7] ? `-${nums[7]}` : ''}${nums[8] ? nums[8] : ''}${nums[9] ? nums[9] : ''}`;
+    }${nums[7] ? `-${nums[7]}` : ''}${nums[8] ? nums[8] : ''}`;
     const formFields = { ...this.state.formFields };
     formFields[name] = format;
     this.setState((prevState) => ({
@@ -64,17 +69,12 @@ export default class Form extends Component {
     }));
   };
 
-  handleChange = (e) => {
+  handleChange = async (e) => {
     const { name } = e.target;
     const { value } = e.target;
     const formFields = { ...this.state.formFields };
     if (name === 'phone') {
       this.createMaskForPhone(name, value, formFields);
-      // formFields.phone = value.replace(/(\d{1})(\d{4})(\d{2})(\d{2})/, '$1-$2-$3-$4');
-      // this.setState((prevState) => ({
-      //   ...prevState,
-      //   formFields,
-      // }));
     } else {
       formFields[name] = value;
       this.setState((prevState) => ({
@@ -82,15 +82,12 @@ export default class Form extends Component {
         formFields,
       }));
     }
-    this.setState({
-      isDisabled: false,
-    });
-    this.checkValidation(name, value);
+    await this.checkValidation(name, value);
+    this.checkIsFormValid();
   };
 
   handleSubmit = async (e) => {
     e.preventDefault();
-    await this.checkIsFormValid();
     if (this.state.isValid) {
       this.setState({
         isOpen: true,
@@ -117,9 +114,14 @@ export default class Form extends Component {
       this.setState((prevState) => {
         return { page: prevState.page + 1 };
       });
+      this.setState({
+        isShow: false,
+        isValid: false,
+      });
     } else {
       this.setState({
         isDisabled: true,
+        isShow: true,
       });
     }
   };
@@ -128,6 +130,10 @@ export default class Form extends Component {
     e.preventDefault();
     this.setState((prevState) => {
       return { page: prevState.page - 1 };
+    });
+    this.setState({
+      isValid: true,
+      isDisabled: false,
     });
   };
 
@@ -167,7 +173,7 @@ export default class Form extends Component {
                 handleChange={this.handleChange}
                 value={this.state.formFields[item.name]}
                 error={this.state.formErrors[item.name]}
-                isFormValid={this.state.isValid}
+                isShow={this.state.isShow}
               />
             );
           })}
