@@ -58,7 +58,7 @@ export const surveyData = [
     inputType: 'tel',
     name: 'phone',
     label: 'Телефон:',
-    placeholder: 'Введите ваш номер...',
+    placeholder: 'Введите номер (9 цифр)...',
   },
   {
     id: 4,

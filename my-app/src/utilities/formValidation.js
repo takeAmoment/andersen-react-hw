@@ -28,8 +28,6 @@ export default function validateSurveyForm(type, fieldValue) {
     case 'phone':
       if (value.length === 0) {
         message = 'Поле пустое. Заполните пожалуйста';
-      } else if (value.length > 12) {
-        message = 'Допустимая длинна 12 символов';
       } else if (value.length < 12) {
         message = 'Не менее 9 цифр';
       }
