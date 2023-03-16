@@ -4,7 +4,7 @@ import styles from './InputField.module.css';
 
 export class InputField extends Component {
   render() {
-    const { item, handleChange, value, classname, error, isFormValid } = this.props;
+    const { item, handleChange, value, classname, error, isShow } = this.props;
 
     return (
       <div
@@ -23,7 +23,7 @@ export class InputField extends Component {
             <p className={styles.textarea__text}>Осталось {value.trim().length}/600 символов</p>
           </>
         )}
-        <p className={styles.field__error}>{!isFormValid ? error : ''}</p>
+        <p className={styles.field__error}>{isShow ? error : ''}</p>
       </div>
     );
   }
