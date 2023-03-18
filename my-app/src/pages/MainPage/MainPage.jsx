@@ -28,7 +28,7 @@ export default class MainPage extends Component {
               />
             </>
           ) : (
-            <Survey props={this.state} />
+            <Survey props={this.state} data={surveyData} />
           )}
         </div>
       </main>

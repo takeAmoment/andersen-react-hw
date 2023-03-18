@@ -1,11 +1,10 @@
 import { Component } from 'react';
 import styles from './Survey.module.css';
-import { surveyData } from '../../data/surveyData';
 
 export default class Survey extends Component {
-  // eslint-disable-next-line class-methods-use-this
   findLabel = (item) => {
-    const object = surveyData.find((el) => el.name === item);
+    const { data } = this.props;
+    const object = data.find((el) => el.name === item);
     return object.label;
   };
 
