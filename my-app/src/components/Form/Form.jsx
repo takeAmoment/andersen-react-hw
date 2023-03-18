@@ -205,11 +205,7 @@ export class Form extends Component {
         {this.state.isOpen && (
           <Modal onOpen={this.state.isOpen} onClose={this.onClose}>
             <SuccessNotification
-              message={
-                this.state.formFields.name
-                  ? `${this.state.formFields.name}, you survay was saved!`
-                  : 'Friend, your survay was saved!'
-              }
+              message={`${this.state.formFields.name}, ваша анкета была сохранена!`}
               name={this.state.name}
             />
           </Modal>

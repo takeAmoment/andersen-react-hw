@@ -19,7 +19,7 @@ export class Modal extends Component {
       >
         <div className={styles.modal__container}>
           {children}
-          <Button classname={styles.modal__button} type="button" onClick={onClose} text="Close" />
+          <Button classname={styles.modal__button} type="button" onClick={onClose} text="Закрыть" />
         </div>
       </div>,
       moduleRoot
