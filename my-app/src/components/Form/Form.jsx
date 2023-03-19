@@ -18,6 +18,11 @@ export class Form extends Component {
     return { firstIndex, lastIndex };
   };
 
+  isActive = (index) => {
+    const indices = this.findIndex();
+    return index >= indices.firstIndex && index <= indices.lastIndex;
+  };
+
   checkIsFormValid = () => {
     const { formData } = this.props;
     let isValid = true;
@@ -142,7 +147,6 @@ export class Form extends Component {
 
   render() {
     const { formData } = this.props;
-    const indices = this.findIndex();
     const totalCount = Math.ceil(formData.length / this.state.amountPerPage);
 
     return (
@@ -167,9 +171,7 @@ export class Form extends Component {
                 <InputField
                   key={item.id}
                   item={item}
-                  classname={
-                    index >= indices.firstIndex && index <= indices.lastIndex ? 'active' : ''
-                  }
+                  classname={this.isActive(index) ? 'active' : ''}
                   handleChange={this.handleChange}
                   value={this.state.formFields[item.name]}
                   error={this.state.formErrors[item.name]}
@@ -179,9 +181,7 @@ export class Form extends Component {
                 <TextareaField
                   key={item.id}
                   item={item}
-                  classname={
-                    index >= indices.firstIndex && index <= indices.lastIndex ? 'active' : ''
-                  }
+                  classname={this.isActive(index) ? 'active' : ''}
                   handleChange={this.handleChange}
                   value={this.state.formFields[item.name]}
                   error={this.state.formErrors[item.name]}
