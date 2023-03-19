@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Form from '../../components/Form/Form';
+import { Form } from '../../components/index';
 import styles from './MainPage.module.css';
 import { initialState, surveyData } from '../../data/surveyData';
 

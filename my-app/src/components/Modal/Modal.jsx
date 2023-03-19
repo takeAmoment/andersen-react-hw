@@ -1,11 +1,11 @@
 import ReactDOM from 'react-dom';
 import { Component } from 'react';
 import styles from './Modal.module.css';
-import Button from '../Button/Button';
+import { Button } from '../index';
 
 const moduleRoot = document.getElementById('root');
 
-export default class Modal extends Component {
+export class Modal extends Component {
   render() {
     const { onClose, children } = this.props;
     return ReactDOM.createPortal(

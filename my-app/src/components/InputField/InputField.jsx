@@ -1,9 +1,8 @@
 import { Component } from 'react';
-import Input from '../Input/Input';
-import Textarea from '../Textarea/Textarea';
+import { Textarea, Input } from '../index';
 import styles from './InputField.module.css';
 
-export default class InputField extends Component {
+export class InputField extends Component {
   render() {
     const { item, handleChange, value, classname } = this.props;
     return (

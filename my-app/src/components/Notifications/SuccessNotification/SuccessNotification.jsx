@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import styles from './SuccessNotification.module.css';
 
-export default class SuccessNotification extends Component {
+export class SuccessNotification extends Component {
   render() {
     return (
       <div className={styles.success}>

@@ -1,6 +1,7 @@
 import { Component } from 'react';
 
-export default class Textarea extends Component {
+// eslint-disable-next-line import/prefer-default-export
+export class Textarea extends Component {
   render() {
     const { item, handleChange, value } = this.props;
     return (

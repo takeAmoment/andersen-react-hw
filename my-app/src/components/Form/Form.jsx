@@ -1,11 +1,8 @@
 import { Component } from 'react';
-import Button from '../Button/Button';
-import InputField from '../InputField/InputField';
+import { InputField, Button, Modal, SuccessNotification } from '../index';
 import styles from './Form.module.css';
-import Modal from '../Modal/Modal';
-import SuccessNotification from '../Notifications/SuccessNotification/SuccessNotification';
 
-export default class Form extends Component {
+export class Form extends Component {
   constructor(props) {
     super(props);
     this.state = this.props.initialState;
