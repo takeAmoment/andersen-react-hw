@@ -19,12 +19,14 @@ export const initialState = {
     technologies: 'Поле пустое. Заполните пожалуйста',
     project: 'Поле пустое. Заполните пожалуйста',
   },
-  isValid: false,
-  isShow: false,
-  isDisabled: false,
-  isOpen: false,
-  amountPerPage: 3,
-  page: 0,
+  formInfo: {
+    isValid: false,
+    isShow: false,
+    isDisabled: false,
+    isOpen: false,
+    amountPerPage: 3,
+    page: 0,
+  },
 };
 
 export const surveyData = [

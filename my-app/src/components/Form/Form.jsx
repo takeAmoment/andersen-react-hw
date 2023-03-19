@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../Button/Button';
 import InputField from '../InputField/InputField';
 import styles from './Form.module.css';
@@ -6,54 +6,58 @@ import Modal from '../Modal/Modal';
 import SuccessNotification from '../Notifications/SuccessNotification/SuccessNotification';
 import validateSurveyForm from '../../utilities/formValidation';
 
-export default class Form extends Component {
-  constructor(props) {
-    super(props);
-    this.state = this.props.initialState;
-  }
+const Form = ({ initialState, formData, saveSurvey }) => {
+  const [formFields, setFormFields] = useState(initialState.formFields);
+  const [formErrors, setFormErrors] = useState(initialState.formErrors);
+  const [formInfo, setFormInfo] = useState(initialState.formInfo);
+  const totalCount = Math.ceil(formData.length / formInfo.amountPerPage);
 
-  findIndex = () => {
-    const firstIndex = this.state.page * this.state.amountPerPage;
-    let lastIndex = firstIndex + (this.state.amountPerPage - 1);
-    if (lastIndex >= this.props.formData.length) {
-      lastIndex = this.props.formData.length - 1;
+  const findIndex = () => {
+    const firstIndex = formInfo.page * formInfo.amountPerPage;
+    let lastIndex = firstIndex + (formInfo.amountPerPage - 1);
+    if (lastIndex >= formData.length) {
+      lastIndex = formData.length - 1;
     }
     return { firstIndex, lastIndex };
   };
+  const indices = findIndex();
 
-  checkIsFormValid = () => {
-    const { formData } = this.props;
+  const checkIsFormValid = () => {
     let isValid = true;
-    const indices = this.findIndex();
-
     for (let i = indices.firstIndex; i <= indices.lastIndex; i += 1) {
       const { name } = formData[i];
-      if (this.state.formErrors[name]) {
+      if (formErrors[name]) {
         isValid = false;
         break;
       }
     }
-    this.setState({
-      isValid,
-    });
+
     if (isValid) {
-      this.setState({
+      setFormInfo((prevState) => ({
+        ...prevState,
         isDisabled: false,
-      });
+        isValid: true,
+      }));
+    } else {
+      setFormInfo((prevState) => ({
+        ...prevState,
+        isValid: false,
+      }));
     }
   };
+  useEffect(() => {
+    checkIsFormValid();
+  }, [formErrors, formInfo.isValid]);
 
-  checkValidation = (name, value) => {
+  const checkValidation = (name, value) => {
     const message = validateSurveyForm(name, value);
-    const formErrors = { ...this.state.formErrors };
-    formErrors[name] = message;
-    this.setState((prevState) => ({
+    setFormErrors((prevState) => ({
       ...prevState,
-      formErrors,
+      [name]: message,
     }));
   };
 
-  createMaskForPhone = (name, value) => {
+  const createMaskForPhone = (name, value) => {
     const val = value.replace(/\D/g, '');
     const nums = val.split('');
     const format = `${nums[0] ? nums[0] : ''}${nums[1] ? `-${nums[1]}` : ''}${
@@ -61,158 +65,149 @@ export default class Form extends Component {
     }${nums[3] ? nums[3] : ''}${nums[4] ? nums[4] : ''}${nums[5] ? `-${nums[5]}` : ''}${
       nums[6] ? nums[6] : ''
     }${nums[7] ? `-${nums[7]}` : ''}${nums[8] ? nums[8] : ''}`;
-    const formFields = { ...this.state.formFields };
-    formFields[name] = format;
-    this.setState((prevState) => ({
+    setFormFields((prevState) => ({
       ...prevState,
-      formFields,
+      [name]: format,
     }));
   };
 
-  handleChange = async (e) => {
+  const handleChange = async (e) => {
     const { name } = e.target;
     const { value } = e.target;
-    const formFields = { ...this.state.formFields };
     if (name === 'phone') {
-      this.createMaskForPhone(name, value, formFields);
+      createMaskForPhone(name, value);
     } else {
-      formFields[name] = value;
-      this.setState((prevState) => ({
+      setFormFields((prevState) => ({
         ...prevState,
-        formFields,
+        [name]: value,
       }));
     }
-    await this.checkValidation(name, value);
-    this.checkIsFormValid();
+    checkValidation(name, value);
   };
 
-  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (this.state.isValid) {
-      this.setState({
+    if (formInfo.isValid) {
+      setFormInfo((prevState) => ({
+        ...prevState,
         isOpen: true,
-      });
+      }));
       document.body.style.overflow = 'hidden';
     } else {
-      this.setState({
+      setFormInfo((prevState) => ({
+        ...prevState,
         isDisabled: true,
         isShow: true,
-      });
+      }));
     }
   };
 
-  onClose = (e) => {
+  const onClose = (e) => {
     e.preventDefault();
-    this.props.saveSurvey(this.state.formFields);
-    this.setState(this.props.initialState);
+    saveSurvey(formFields);
+    setFormFields(initialState.formFields);
+    setFormErrors(initialState.formErrors);
+    setFormInfo(initialState.formInfo);
     document.body.style.overflow = 'auto';
   };
 
-  getNextPage = async (e) => {
+  const getNextPage = async (e) => {
     e.preventDefault();
-    await this.checkIsFormValid();
-    if (this.state.isValid) {
-      this.setState((prevState) => {
-        return { page: prevState.page + 1 };
-      });
-      this.setState({
+    if (formInfo.isValid) {
+      setFormInfo({
+        ...formInfo,
         isShow: false,
         isValid: false,
+        page: formInfo.page + 1,
       });
     } else {
-      this.setState({
+      setFormInfo((prevState) => ({
+        ...prevState,
         isDisabled: true,
         isShow: true,
-      });
+      }));
     }
   };
 
-  getPrevPage = (e) => {
+  const getPrevPage = (e) => {
     e.preventDefault();
-    this.setState((prevState) => {
-      return { page: prevState.page - 1 };
-    });
-    this.setState({
+    setFormInfo((prevState) => ({
+      ...prevState,
       isValid: true,
       isDisabled: false,
-    });
+      page: prevState.page - 1,
+    }));
   };
 
-  reset = (e) => {
+  const reset = (e) => {
     e.preventDefault();
-    this.setState(this.props.initialState);
+    setFormFields(initialState.formFields);
+    setFormErrors(initialState.formErrors);
+    setFormInfo(initialState.formInfo);
   };
 
-  render() {
-    const { formData } = this.props;
-    const indices = this.findIndex();
-    const totalCount = Math.ceil(formData.length / this.state.amountPerPage);
-    return (
-      <div className={styles.form__container}>
-        <div className={styles.form__info}>
-          {this.state.page > 0 && (
-            <button
-              type="button"
-              aria-label="previous"
-              onClick={this.getPrevPage}
-              className={styles.info__icon}
-            />
-          )}
-          <p className={styles.info__text}>
-            Шаг <span>{this.state.page + 1}</span> из {totalCount}
-          </p>
-        </div>
-        <form onSubmit={this.handleSubmit}>
-          {formData.map((item, index) => {
-            return (
-              <InputField
-                key={item.id}
-                item={item}
-                classname={
-                  index >= indices.firstIndex && index <= indices.lastIndex ? 'active' : ''
-                }
-                handleChange={this.handleChange}
-                value={this.state.formFields[item.name]}
-                error={this.state.formErrors[item.name]}
-                isShow={this.state.isShow}
-              />
-            );
-          })}
-          {this.state.page < totalCount - 1 ? (
-            <Button
-              buttonType="button"
-              classname={`${styles.form__button} ${styles.button_next}`}
-              text="Вперед"
-              disabled={this.state.isDisabled}
-              onClick={this.getNextPage}
-            />
-          ) : (
-            <div className={styles.buttons}>
-              <Button
-                buttonType="submit"
-                classname={`${styles.form__button} ${styles.button_submit}`}
-                text="Сохранить"
-                disabled={this.state.isDisabled}
-              />
-              <Button
-                buttonType="reset"
-                classname={`${styles.form__button} ${styles.button_reset}`}
-                text="Отмена"
-                disabled={false}
-                onClick={this.reset}
-              />
-            </div>
-          )}
-        </form>
-        {this.state.isOpen && (
-          <Modal onOpen={this.state.isOpen} onClose={this.onClose}>
-            <SuccessNotification
-              message={`${this.state.formFields.name}, ваша анкета была сохранена!`}
-              name={this.state.name}
-            />
-          </Modal>
+  return (
+    <div className={styles.form__container}>
+      <div className={styles.form__info}>
+        {formInfo.page > 0 && (
+          <button
+            type="button"
+            aria-label="previous"
+            onClick={getPrevPage}
+            className={styles.info__icon}
+          />
         )}
+        <p className={styles.info__text}>
+          Шаг <span>{formInfo.page + 1}</span> из {totalCount}
+        </p>
       </div>
-    );
-  }
-}
+      <form onSubmit={handleSubmit}>
+        {formData.map((item, index) => {
+          return (
+            <InputField
+              key={item.id}
+              item={item}
+              classname={index >= indices.firstIndex && index <= indices.lastIndex ? 'active' : ''}
+              handleChange={handleChange}
+              value={formFields[item.name]}
+              error={formErrors[item.name]}
+              isShow={formInfo.isShow}
+            />
+          );
+        })}
+        {formInfo.page < totalCount - 1 ? (
+          <Button
+            buttonType="button"
+            classname={`${styles.form__button} ${styles.button_next}`}
+            text="Вперед"
+            disabled={formInfo.isDisabled}
+            onClick={getNextPage}
+          />
+        ) : (
+          <div className={styles.buttons}>
+            <Button
+              buttonType="submit"
+              classname={`${styles.form__button} ${styles.button_submit}`}
+              text="Сохранить"
+              disabled={formInfo.isDisabled}
+            />
+            <Button
+              buttonType="reset"
+              classname={`${styles.form__button} ${styles.button_reset}`}
+              text="Отмена"
+              disabled={false}
+              onClick={reset}
+            />
+          </div>
+        )}
+      </form>
+      {formInfo.isOpen && (
+        <Modal onOpen={formInfo.isOpen} onClose={onClose}>
+          <SuccessNotification message={`${formFields.name}, ваша анкета была сохранена!`} />
+        </Modal>
+      )}
+    </div>
+  );
+};
+
+export default Form;

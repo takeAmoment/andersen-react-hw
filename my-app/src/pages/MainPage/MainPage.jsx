@@ -1,37 +1,30 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import Form from '../../components/Form/Form';
 import styles from './MainPage.module.css';
 import { initialState, surveyData } from '../../data/surveyData';
 import Survey from '../../components/Survey/Survey';
 
-export default class MainPage extends Component {
-  constructor(props) {
-    super(props);
-    this.state = initialState.formFields;
-  }
+const MainPage = () => {
+  const [formFields, setFormFields] = useState(initialState.formFields);
 
-  saveSurvey = (data) => {
-    this.setState(data);
+  const saveSurvey = (data) => {
+    setFormFields(data);
   };
 
-  render() {
-    return (
-      <main>
-        <div className={styles.main__container}>
-          {!this.state.name ? (
-            <>
-              <h1>Создание анкеты</h1>
-              <Form
-                initialState={initialState}
-                formData={surveyData}
-                saveSurvey={this.saveSurvey}
-              />
-            </>
-          ) : (
-            <Survey props={this.state} data={surveyData} />
-          )}
-        </div>
-      </main>
-    );
-  }
-}
+  return (
+    <main>
+      <div className={styles.main__container}>
+        {!formFields.name ? (
+          <>
+            <h1>Создание анкеты</h1>
+            <Form initialState={initialState} formData={surveyData} saveSurvey={saveSurvey} />
+          </>
+        ) : (
+          <Survey props={formFields} data={surveyData} />
+        )}
+      </div>
+    </main>
+  );
+};
+
+export default MainPage;
