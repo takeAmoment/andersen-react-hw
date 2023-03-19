@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { InputField, Button, Modal, SuccessNotification } from '../index';
+import { InputField, TextareaField, Button, Modal, SuccessNotification } from '../index';
 import styles from './Form.module.css';
 import validateSurveyForm from '../../utilities/formValidation';
 
@@ -162,19 +162,33 @@ export class Form extends Component {
         </div>
         <form onSubmit={this.handleSubmit}>
           {formData.map((item, index) => {
-            return (
-              <InputField
-                key={item.id}
-                item={item}
-                classname={
-                  index >= indices.firstIndex && index <= indices.lastIndex ? 'active' : ''
-                }
-                handleChange={this.handleChange}
-                value={this.state.formFields[item.name]}
-                error={this.state.formErrors[item.name]}
-                isShow={this.state.isShow}
-              />
-            );
+            const component =
+              item.type === 'input' ? (
+                <InputField
+                  key={item.id}
+                  item={item}
+                  classname={
+                    index >= indices.firstIndex && index <= indices.lastIndex ? 'active' : ''
+                  }
+                  handleChange={this.handleChange}
+                  value={this.state.formFields[item.name]}
+                  error={this.state.formErrors[item.name]}
+                  isShow={this.state.isShow}
+                />
+              ) : (
+                <TextareaField
+                  key={item.id}
+                  item={item}
+                  classname={
+                    index >= indices.firstIndex && index <= indices.lastIndex ? 'active' : ''
+                  }
+                  handleChange={this.handleChange}
+                  value={this.state.formFields[item.name]}
+                  error={this.state.formErrors[item.name]}
+                  isShow={this.state.isShow}
+                />
+              );
+            return component;
           })}
           {this.state.page < totalCount - 1 ? (
             <Button
