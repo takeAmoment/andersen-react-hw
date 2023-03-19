@@ -8,6 +8,7 @@ const moduleRoot = document.getElementById('root');
 export class Modal extends Component {
   render() {
     const { onClose, children } = this.props;
+
     return ReactDOM.createPortal(
       <div
         className={styles.modal}

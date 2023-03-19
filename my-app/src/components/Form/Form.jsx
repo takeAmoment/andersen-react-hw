@@ -63,6 +63,7 @@ export class Form extends Component {
     const { formData } = this.props;
     const indices = this.findIndex();
     const totalCount = Math.ceil(formData.length / this.state.amountPerPage);
+
     return (
       <div className={styles.form__container}>
         <div className={styles.form__info}>

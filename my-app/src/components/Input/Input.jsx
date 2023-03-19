@@ -3,6 +3,7 @@ import { Component } from 'react';
 export class Input extends Component {
   render() {
     const { item, handleChange, value } = this.props;
+
     return (
       <input
         type={item.inputType}
