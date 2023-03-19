@@ -1,0 +1,31 @@
+:root{
+    --header-color: #597ef7;
+    --header-text-color: #fff;
+}
+
+header{
+    background-color: var(--header-color);
+}
+.header__container {
+    padding: 1rem;
+}
+.header__logo {
+    text-decoration: none;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 3rem auto;
+    color: var(--header-text-color);
+}
+.logo__icon {
+    display: block;
+    width: 3rem;
+    height: 3rem;
+    background-image: url(../../assets/icons/job.svg);
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: contain;
+}
+.logo__text{
+    font-family: 'Sriracha', cursive;
+    font-size: 3.6rem;
+}

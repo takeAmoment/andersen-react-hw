@@ -1,0 +1,106 @@
+:root {
+    --form-color: #f0f5ff;
+    --form-next-button: #597ef7;
+    --form-submit-button: #4cb364;
+    --form-reset-button: #ff7875;
+}
+.form__container {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    border-radius: 1rem;
+    width: 60rem;
+    box-shadow: 0rem 0rem 0.6rem 0.03rem rgba(0, 0, 0, 0.4);
+    background-color: var(--form-color);
+}
+@media (max-width: 700px) {
+    .form__container {
+        width: 90%;
+    }
+}
+.form__info {
+    margin-top: 2rem;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, auto);
+    align-items: center;
+    justify-content: center;
+}
+.info__icon{
+    margin-left: -3rem;
+    width: 3rem;
+    height: 3rem;
+    background-repeat: no-repeat;
+    background-image: url(../../assets/icons/previous-btn.svg);
+    background-position: 0 0;
+    background-size: contain;
+    background-color: transparent;
+    outline: none;
+    border: none;
+}
+.info__icon:hover{
+    opacity: 0.6;
+    transition: all 0.3s;
+    transform: translateY(0.1rem);
+}
+.info__text {
+    font-size: 2rem;
+}
+form {
+    padding: 2rem;
+    display: grid;
+    justify-items: center;
+    min-height: 50rem;
+}
+@media (max-width: 700px) {
+    .form {
+        padding: 2rem 1rem;
+    }
+}
+.buttons {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, auto);
+}
+@media (max-width: 700px) {
+    .buttons {
+        gap: 0;
+        grid-template-columns: 1fr;
+    }
+}
+.form__button {
+    margin-top: 2rem;
+    color: white;
+    width: 20rem;
+    height: 5rem;
+}
+@media (max-width: 700px) {
+    .form__button {
+        width: 15rem;
+    }
+}
+.form__button:hover{
+    opacity: 0.9;
+    transition: all 0.3s;
+    transform: translateY(0.1rem);
+}
+.button_reset {
+    background-color: var(--form-reset-button);
+    box-shadow: 0rem 0rem 0.3rem 0.1rem var(--form-reset-button);
+}
+.button_reset:hover{
+    box-shadow: 0rem 0rem 0.2rem 0.1rem var(--form-reset-button);
+}
+.button_submit {
+    background-color: var(--form-submit-button);
+    box-shadow: 0rem 0rem 0.3rem 0.1rem var(--form-submit-button);
+}
+.button_submit:hover{
+    box-shadow: 0rem 0rem 0.2rem 0.1rem var(--form-submit-button);
+}
+.button_next {
+    background-color: var(--form-next-button);
+    box-shadow: 0rem 0rem 0.3rem 0.1rem var(--form-next-button);
+}
+.button_next:hover{
+    box-shadow: 0rem 0rem 0.2rem 0.1rem var(--form-next-button);
+}
