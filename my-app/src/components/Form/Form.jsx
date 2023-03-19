@@ -2,6 +2,7 @@ import { Component } from 'react';
 import { InputField, TextareaField, Button, Modal, SuccessNotification } from '../index';
 import styles from './Form.module.css';
 import validateSurveyForm from '../../utilities/formValidation';
+import createMaskForPhone from '../../utilities/createMaskForPhone';
 
 export class Form extends Component {
   constructor(props) {
@@ -55,14 +56,8 @@ export class Form extends Component {
     }));
   };
 
-  createMaskForPhone = (name, value) => {
-    const val = value.replace(/\D/g, '');
-    const nums = val.split('');
-    const format = `${nums[0] ? nums[0] : ''}${nums[1] ? `-${nums[1]}` : ''}${
-      nums[2] ? nums[2] : ''
-    }${nums[3] ? nums[3] : ''}${nums[4] ? nums[4] : ''}${nums[5] ? `-${nums[5]}` : ''}${
-      nums[6] ? nums[6] : ''
-    }${nums[7] ? `-${nums[7]}` : ''}${nums[8] ? nums[8] : ''}`;
+  createMask = (name, value) => {
+    const format = createMaskForPhone(name, value);
     const formFields = { ...this.state.formFields };
     formFields[name] = format;
     this.setState((prevState) => ({
@@ -76,7 +71,7 @@ export class Form extends Component {
     const { value } = e.target;
     const formFields = { ...this.state.formFields };
     if (name === 'phone') {
-      this.createMaskForPhone(name, value, formFields);
+      this.createMask(name, value, formFields);
     } else {
       formFields[name] = value;
       this.setState((prevState) => ({
@@ -171,7 +166,7 @@ export class Form extends Component {
                 <InputField
                   key={item.id}
                   item={item}
-                  classname={this.isActive(index) ? 'active' : ''}
+                  classname={this.isActive(index)}
                   handleChange={this.handleChange}
                   value={this.state.formFields[item.name]}
                   error={this.state.formErrors[item.name]}
@@ -181,7 +176,7 @@ export class Form extends Component {
                 <TextareaField
                   key={item.id}
                   item={item}
-                  classname={this.isActive(index) ? 'active' : ''}
+                  classname={this.isActive(index)}
                   handleChange={this.handleChange}
                   value={this.state.formFields[item.name]}
                   error={this.state.formErrors[item.name]}
