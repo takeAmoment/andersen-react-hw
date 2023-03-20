@@ -1,0 +1,27 @@
+.input__field {
+    display: none;
+    grid-template-rows: auto;
+    padding: 1rem 0;
+    width: 80%;
+}
+.input__field.active {
+    display: grid;
+}
+.field__label {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 0.7rem;
+}
+.label__note {
+    color: var(--error-color);
+}
+.field__error {
+    margin-top: 0.5rem;
+    font-size: 1.4rem;
+    color: var(--error-color);
+    height: 1.5rem;
+}
+.textarea__text {
+    margin-bottom: -2rem;
+    font-size: 1.4rem;
+}
