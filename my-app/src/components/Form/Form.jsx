@@ -12,7 +12,7 @@ export const Form = ({ initialState, formData, saveSurvey }) => {
   const totalCount = Math.ceil(formData.length / formInfo.amountPerPage);
   const indices = useIndices(formInfo.page, formInfo.amountPerPage, formData);
 
-  const checkIsFormValid = () => {
+  const checkIsValid = () => {
     let isValid = true;
     for (let i = indices.firstIndex; i <= indices.lastIndex; i += 1) {
       const { name } = formData[i];
@@ -21,7 +21,11 @@ export const Form = ({ initialState, formData, saveSurvey }) => {
         break;
       }
     }
+    return isValid;
+  };
 
+  useEffect(() => {
+    const isValid = checkIsValid();
     if (isValid) {
       setFormInfo((prevState) => ({
         ...prevState,
@@ -34,10 +38,6 @@ export const Form = ({ initialState, formData, saveSurvey }) => {
         isValid: false,
       }));
     }
-  };
-
-  useEffect(() => {
-    checkIsFormValid();
   }, [formErrors, formInfo.isValid]);
 
   const checkIsActive = (index) => {
