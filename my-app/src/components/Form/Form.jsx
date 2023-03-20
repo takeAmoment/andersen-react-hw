@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Button, InputField, Modal, SuccessNotification, TextareaField } from '../index';
 import styles from './Form.module.css';
 import validateSurveyForm from '../../utilities/formValidation';
+import createMaskForPhone from '../../utilities/createMaskForPhone';
 
 export const Form = ({ initialState, formData, saveSurvey }) => {
   const [formFields, setFormFields] = useState(initialState.formFields);
@@ -58,14 +59,8 @@ export const Form = ({ initialState, formData, saveSurvey }) => {
     }));
   };
 
-  const createMaskForPhone = (name, value) => {
-    const val = value.replace(/\D/g, '');
-    const nums = val.split('');
-    const format = `${nums[0] ? nums[0] : ''}${nums[1] ? `-${nums[1]}` : ''}${
-      nums[2] ? nums[2] : ''
-    }${nums[3] ? nums[3] : ''}${nums[4] ? nums[4] : ''}${nums[5] ? `-${nums[5]}` : ''}${
-      nums[6] ? nums[6] : ''
-    }${nums[7] ? `-${nums[7]}` : ''}${nums[8] ? nums[8] : ''}`;
+  const createMask = (name, value) => {
+    const format = createMaskForPhone(value);
     setFormFields((prevState) => ({
       ...prevState,
       [name]: format,
@@ -76,7 +71,7 @@ export const Form = ({ initialState, formData, saveSurvey }) => {
     const { name } = e.target;
     const { value } = e.target;
     if (name === 'phone') {
-      createMaskForPhone(name, value);
+      createMask(name, value);
     } else {
       setFormFields((prevState) => ({
         ...prevState,
