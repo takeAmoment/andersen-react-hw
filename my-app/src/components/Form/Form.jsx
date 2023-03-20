@@ -57,7 +57,7 @@ export class Form extends Component {
   };
 
   createMask = (name, value) => {
-    const format = createMaskForPhone(name, value);
+    const format = createMaskForPhone(value);
     const formFields = { ...this.state.formFields };
     formFields[name] = format;
     this.setState((prevState) => ({

@@ -1,4 +1,4 @@
-const createMaskForPhone = (name, value) => {
+const createMaskForPhone = (value) => {
   const val = value.replace(/\D/g, '');
   const nums = val.split('');
   const format = `${nums[0] ? nums[0] : ''}${nums[1] ? `-${nums[1]}` : ''}${
