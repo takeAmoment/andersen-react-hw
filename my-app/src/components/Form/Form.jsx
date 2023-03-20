@@ -38,6 +38,7 @@ export const Form = ({ initialState, formData, saveSurvey }) => {
         isValid: false,
       }));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formErrors, formInfo.isValid]);
 
   const checkIsActive = (index) => {
