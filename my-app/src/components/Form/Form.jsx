@@ -1,12 +1,9 @@
 import { useEffect, useState } from 'react';
-import Button from '../Button/Button';
-import InputField from '../InputField/InputField';
+import { Button, InputField, Modal, SuccessNotification } from '../index';
 import styles from './Form.module.css';
-import Modal from '../Modal/Modal';
-import SuccessNotification from '../Notifications/SuccessNotification/SuccessNotification';
 import validateSurveyForm from '../../utilities/formValidation';
 
-const Form = ({ initialState, formData, saveSurvey }) => {
+export const Form = ({ initialState, formData, saveSurvey }) => {
   const [formFields, setFormFields] = useState(initialState.formFields);
   const [formErrors, setFormErrors] = useState(initialState.formErrors);
   const [formInfo, setFormInfo] = useState(initialState.formInfo);
@@ -209,5 +206,3 @@ const Form = ({ initialState, formData, saveSurvey }) => {
     </div>
   );
 };
-
-export default Form;

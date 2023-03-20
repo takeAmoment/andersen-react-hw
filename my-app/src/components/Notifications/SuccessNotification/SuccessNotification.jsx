@@ -1,6 +1,6 @@
 import styles from './SuccessNotification.module.css';
 
-const SuccessNotification = ({ message }) => {
+export const SuccessNotification = ({ message }) => {
   return (
     <div className={styles.success}>
       <div className={styles.success__header}>
@@ -11,5 +11,3 @@ const SuccessNotification = ({ message }) => {
     </div>
   );
 };
-
-export default SuccessNotification;

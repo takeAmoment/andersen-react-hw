@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import Form from '../../components/Form/Form';
 import styles from './MainPage.module.css';
 import { initialState, surveyData } from '../../data/surveyData';
-import Survey from '../../components/Survey/Survey';
+import { Survey, Form } from '../../components/index';
 
 const MainPage = () => {
   const [formFields, setFormFields] = useState(initialState.formFields);

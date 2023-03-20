@@ -1,6 +1,6 @@
 import styles from './Survey.module.css';
 
-const Survey = ({ props, data }) => {
+export const Survey = ({ props, data }) => {
   const findLabel = (item) => {
     const object = data.find((el) => el.name === item);
     return object.label;
@@ -25,5 +25,3 @@ const Survey = ({ props, data }) => {
     </div>
   );
 };
-
-export default Survey;

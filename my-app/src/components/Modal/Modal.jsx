@@ -1,10 +1,10 @@
 import ReactDOM from 'react-dom';
 import styles from './Modal.module.css';
-import Button from '../Button/Button';
+import { Button } from '../index';
 
 const moduleRoot = document.getElementById('root');
 
-const Modal = ({ onClose, children }) => {
+export const Modal = ({ onClose, children }) => {
   return ReactDOM.createPortal(
     <div className={styles.modal} role="button" tabIndex={0} onClick={onClose} onKeyDown={onClose}>
       <div className={styles.modal__container}>
@@ -15,5 +15,3 @@ const Modal = ({ onClose, children }) => {
     moduleRoot
   );
 };
-
-export default Modal;

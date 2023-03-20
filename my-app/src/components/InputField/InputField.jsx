@@ -1,8 +1,7 @@
-import Input from '../Input/Input';
-import Textarea from '../Textarea/Textarea';
+import { Input, Textarea } from '../index';
 import styles from './InputField.module.css';
 
-const InputField = ({ item, handleChange, value, classname, error, isShow }) => {
+export const InputField = ({ item, handleChange, value, classname, error, isShow }) => {
   return (
     <div
       className={
@@ -26,5 +25,3 @@ const InputField = ({ item, handleChange, value, classname, error, isShow }) => 
     </div>
   );
 };
-
-export default InputField;

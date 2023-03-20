@@ -1,4 +1,4 @@
-const Input = ({ item, handleChange, value }) => {
+export const Input = ({ item, handleChange, value }) => {
   return (
     <input
       type={item.inputType}
@@ -9,4 +9,3 @@ const Input = ({ item, handleChange, value }) => {
     />
   );
 };
-export default Input;

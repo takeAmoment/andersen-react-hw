@@ -1,4 +1,4 @@
-const Textarea = ({ item, handleChange, value }) => {
+export const Textarea = ({ item, handleChange, value }) => {
   return (
     <textarea
       rows={7}
@@ -10,5 +10,3 @@ const Textarea = ({ item, handleChange, value }) => {
     />
   );
 };
-
-export default Textarea;
