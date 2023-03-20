@@ -3,22 +3,14 @@ import { Button, InputField, Modal, SuccessNotification, TextareaField } from '.
 import styles from './Form.module.css';
 import validateSurveyForm from '../../utilities/formValidation';
 import createMaskForPhone from '../../utilities/createMaskForPhone';
+import useIndices from '../../hooks/useIndices';
 
 export const Form = ({ initialState, formData, saveSurvey }) => {
   const [formFields, setFormFields] = useState(initialState.formFields);
   const [formErrors, setFormErrors] = useState(initialState.formErrors);
   const [formInfo, setFormInfo] = useState(initialState.formInfo);
   const totalCount = Math.ceil(formData.length / formInfo.amountPerPage);
-
-  const findIndex = () => {
-    const firstIndex = formInfo.page * formInfo.amountPerPage;
-    let lastIndex = firstIndex + (formInfo.amountPerPage - 1);
-    if (lastIndex >= formData.length) {
-      lastIndex = formData.length - 1;
-    }
-    return { firstIndex, lastIndex };
-  };
-  const indices = findIndex();
+  const indices = useIndices(formInfo.page, formInfo.amountPerPage, formData);
 
   const checkIsFormValid = () => {
     let isValid = true;
@@ -43,6 +35,7 @@ export const Form = ({ initialState, formData, saveSurvey }) => {
       }));
     }
   };
+
   useEffect(() => {
     checkIsFormValid();
   }, [formErrors, formInfo.isValid]);
