@@ -8,6 +8,11 @@ export default class Survey extends Component {
     return object.label;
   };
 
+  createKey = () => {
+    const key = new Date();
+    return key.getTime();
+  };
+
   render() {
     const { props } = this.props;
     return (
@@ -18,10 +23,9 @@ export default class Survey extends Component {
         <ul className={styles.card__body}>
           {Object.keys(props)
             .slice(2)
-            .map((item, index) => {
+            .map((item) => {
               return (
-                // eslint-disable-next-line react/no-array-index-key
-                <li key={index} className={styles.body__item}>
+                <li key={this.createKey()} className={styles.body__item}>
                   <p className={styles.item__label}>{this.findLabel(item)}</p>
                   <p className={styles.item__text}>{props[item]}</p>
                 </li>

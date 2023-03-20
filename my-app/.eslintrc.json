@@ -37,6 +37,7 @@
         "react/prefer-stateless-function": [0, { "ignorePureComponents": true }],
         "import/export": 0,
         "import/no-cycle": 0,
+        "class-methods-use-this": "off",
         "import/prefer-default-export": ["off"],
         "jsx-a11y/label-has-associated-control": ["error", {
             "required": {
