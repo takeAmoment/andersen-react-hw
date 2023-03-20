@@ -1,5 +1,6 @@
 .survey__card {
     width: 50rem;
+    overflow-x: auto;
     display: grid;
     gap: 2rem;
     border-radius: 2rem;
@@ -10,11 +11,12 @@
 
 @media (max-width: 600px) {
     .survey__card{
-        width: 90%;
+       max-width: 90%;
     }
 }
 .card__title{
     font-size: 2.4rem;
+    hyphens: auto;
     text-align: center;
     padding-bottom: 2rem;
     border-bottom: 0.15rem solid #597ef7;
