@@ -1,5 +1,6 @@
 .survey__card {
     width: 50rem;
+    overflow-x: auto;
     display: grid;
     gap: 2rem;
     border-radius: 2rem;
