@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Button, InputField, Modal, SuccessNotification } from '../index';
+import { Button, InputField, Modal, SuccessNotification, TextareaField } from '../index';
 import styles from './Form.module.css';
 import validateSurveyForm from '../../utilities/formValidation';
 
@@ -45,6 +45,10 @@ export const Form = ({ initialState, formData, saveSurvey }) => {
   useEffect(() => {
     checkIsFormValid();
   }, [formErrors, formInfo.isValid]);
+
+  const checkIsActive = (index) => {
+    return index >= indices.firstIndex && index <= indices.lastIndex;
+  };
 
   const checkValidation = (name, value) => {
     const message = validateSurveyForm(name, value);
@@ -160,17 +164,29 @@ export const Form = ({ initialState, formData, saveSurvey }) => {
       </div>
       <form onSubmit={handleSubmit}>
         {formData.map((item, index) => {
-          return (
-            <InputField
-              key={item.id}
-              item={item}
-              classname={index >= indices.firstIndex && index <= indices.lastIndex ? 'active' : ''}
-              handleChange={handleChange}
-              value={formFields[item.name]}
-              error={formErrors[item.name]}
-              isShow={formInfo.isShow}
-            />
-          );
+          const component =
+            item.type === 'input' ? (
+              <InputField
+                key={item.id}
+                item={item}
+                classname={checkIsActive(index)}
+                handleChange={handleChange}
+                value={formFields[item.name]}
+                error={formErrors[item.name]}
+                isShow={formInfo.isShow}
+              />
+            ) : (
+              <TextareaField
+                key={item.id}
+                item={item}
+                classname={checkIsActive(index)}
+                handleChange={handleChange}
+                value={formFields[item.name]}
+                error={formErrors[item.name]}
+                isShow={formInfo.isShow}
+              />
+            );
+          return component;
         })}
         {formInfo.page < totalCount - 1 ? (
           <Button
